@@ -1,0 +1,198 @@
+:root {
+    --bg-color: #121212;
+    --panel-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --accent-hover: #9965f4;
+    --border-color: #333333;
+    --input-bg: #2c2c2c;
+    --canvas-bg: #0a0a0a;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling if possible */
+}
+
+/* 
+ * CSS Grid Layout:
+ * 3 columns for the bottom section
+ * 2 rows: Top for notation, Bottom for controls
+ */
+.grid-container {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    grid-template-rows: 1.5fr 1fr;
+    gap: 15px;
+    padding: 15px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Shared Panel Styles */
+.panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Panel Assignments */
+.notation-panel {
+    grid-column: 1 / -1; /* Spans across all 3 columns */
+}
+
+.input-panel {
+    grid-column: 1 / 2;
+}
+
+.synth-panel {
+    grid-column: 2 / 3;
+}
+
+.visualizer-panel {
+    grid-column: 3 / 4;
+}
+
+/* Form Controls & Inputs */
+.control-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    color: #aaaaaa;
+}
+
+input[type="number"], select {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: var(--accent-color);
+}
+
+/* Buttons */
+.btn {
+    background-color: var(--accent-color);
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Specific Panel Adjustments */
+.playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.synth-controls {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sliders-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.slider-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="range"] {
+    accent-color: var(--accent-color);
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Canvas Elements */
+#notation-canvas-container {
+    flex-grow: 1;
+    background-color: var(--canvas-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    min-height: 100px; /* Ensure it has some height */
+    position: relative;
+    overflow: hidden;
+}
+
+#spectral-canvas {
+    width: 100%;
+    flex-grow: 1;
+    background-color: var(--canvas-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: block;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .notation-panel, .input-panel, .synth-panel, .visualizer-panel {
+        grid-column: 1 / -1;
+    }
+    
+    #notation-canvas-container {
+        min-height: 300px;
+    }
+    
+    #spectral-canvas {
+        min-height: 200px;
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectral Composer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Top Panel: Musical notation canvas -->
+        <div class="panel notation-panel">
+            <h2>Musical Notation</h2>
+            <div id="notation-canvas-container">
+                <!-- Staves will go here -->
+            </div>
+        </div>
+
+        <!-- Left Side Panel: Data input -->
+        <div class="panel input-panel">
+            <h2>Data</h2>
+            <div class="control-group">
+                <label for="freq-input">Base Frequency (Hz)</label>
+                <input type="number" id="freq-input" value="440" step="1">
+            </div>
+            <button id="calc-harmonic-btn" class="btn">Calculate Harmonic Series</button>
+        </div>
+
+        <!-- Bottom Center Panel: Playback and Synthesizer Controls -->
+        <div class="panel synth-panel">
+            <h2>Synthesizer & Playback</h2>
+            
+            <div class="playback-controls">
+                <button class="btn" id="play-chord-btn">Chord</button>
+                <button class="btn" id="play-arpeggio-btn">Arpeggio</button>
+            </div>
+
+            <div class="synth-controls">
+                <div class="control-group">
+                    <label for="instrument-select">Instrument</label>
+                    <select id="instrument-select">
+                        <option value="synth">Basic Synth</option>
+                        <option value="piano">Piano (Simulated)</option>
+                        <option value="flute">Flute (Simulated)</option>
+                    </select>
+                </div>
+
+                <div class="sliders-container">
+                    <div class="slider-group">
+                        <label>Sine</label>
+                        <input type="range" id="sine-slider" min="0" max="100" value="100">
+                    </div>
+                    <div class="slider-group">
+                        <label>Square</label>
+                        <input type="range" id="square-slider" min="0" max="100" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label>Triangle</label>
+                        <input type="range" id="triangle-slider" min="0" max="100" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label>Sawtooth</label>
+                        <input type="range" id="sawtooth-slider" min="0" max="100" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Right Panel: Spectral visualizer -->
+        <div class="panel visualizer-panel">
+            <h2>Spectral Visualizer</h2>
+            <canvas id="spectral-canvas"></canvas>
+        </div>
+    </div>
+    
+    <!-- VexFlow CDN (Musical Notation) -->
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+    
+    <!-- Main Application Module -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
